@@ -13,3 +13,14 @@ add_executable(test_matrix
 target_include_directories(test_matrix PRIVATE
     cpp/include
 )
+
+
+add_executable(test_mnist_loader
+    cpp/src/matrix.cpp
+    cpp/src/mnist_loader.cpp
+    tests/test_mnist_loader.cpp
+)
+
+target_include_directories(test_mnist_loader PRIVATE
+    cpp/include
+)
