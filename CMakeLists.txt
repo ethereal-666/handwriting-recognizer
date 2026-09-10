@@ -79,3 +79,28 @@ add_executable(test_load
 target_include_directories(test_load PRIVATE
     cpp/include
 )
+
+add_executable(test_recognizer
+    cpp/src/matrix.cpp
+    cpp/src/mnist_loader.cpp
+    cpp/src/linear.cpp
+    cpp/src/softmax.cpp
+    cpp/src/recognizer.cpp
+    tests/test_recognizer.cpp
+)
+
+target_include_directories(test_recognizer PRIVATE
+    cpp/include
+)
+
+add_library(recognizer SHARED
+    cpp/src/matrix.cpp
+    cpp/src/linear.cpp
+    cpp/src/softmax.cpp
+    cpp/src/recognizer.cpp
+    cpp/src/recognizer_api.cpp
+)
+
+target_include_directories(recognizer PRIVATE
+    cpp/include
+)
