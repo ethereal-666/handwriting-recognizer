@@ -1,7 +1,8 @@
 # handwriting-recognizer
 
 ## 迭代情况
-v1:0-9数字识别(MNIST数据集，28x28)，纯线性函数分类，单线程，无cuda
+v1:
+0-9数字识别(MNIST数据集，28x28)，纯线性函数分类，单线程，无cuda
 
 ## AI使用情况：
 tests相关文件、CMakeLists.txt和python相关文件使用了AI生成代码
