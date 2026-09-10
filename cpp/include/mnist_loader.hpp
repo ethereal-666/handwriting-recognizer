@@ -1,3 +1,4 @@
+#pragma once
 #include "matrix.hpp"
 #include <fstream>
 #include <string>

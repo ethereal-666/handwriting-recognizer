@@ -3,18 +3,18 @@
 #include <fstream>
 
 MNISTLoader::MNISTLoader(const std::string &imagePath,
-                         const std::string &labelPath) {
-  this->imagePath = imagePath;
-  this->labelPath = labelPath;
+                         const std::string &labelPath)
+    : imagePath(imagePath), labelPath(labelPath) {
+
   // 打开图片和标签文件并校验
   this->imageFile.open(imagePath, std::ios::binary);
   this->labelFile.open(labelPath, std::ios::binary);
   assert(this->imageFile && "imageFile open error");
   assert(this->labelFile && "labelFile open error");
-  assert((readBigEndianInt(this->imageFile) == 0x803) &&
-         "invalid imageFile file(magic number error)");
-  assert((readBigEndianInt(this->labelFile) == 0x801) &&
-         "invalid labelFile file(magic number error)");
+  int imageMagic = readBigEndianInt(this->imageFile);
+  assert((imageMagic == 0x803) && "invalid imageFile file(magic number error)");
+  int labelMagic = readBigEndianInt(this->labelFile);
+  assert((labelMagic == 0x801) && "invalid labelFile file(magic number error)");
   // 读取图片和标签参数
   this->imageCount = readBigEndianInt(this->imageFile);
   this->rows = readBigEndianInt(this->imageFile);

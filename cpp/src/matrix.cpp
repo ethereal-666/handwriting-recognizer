@@ -99,3 +99,21 @@ Matrix Matrix::transpose() const {
   }
   return result;
 }
+
+Matrix Matrix::reshape(int newRows, int newCols) const {
+  assert((newRows * newCols == this->rows * this->cols) &&
+         "reshape size error");
+  Matrix result(newRows, newCols);
+  for (int i = 0; i < (newRows * newCols); i++) {
+    result.data[i] = this->data[i];
+  }
+  return result;
+}
+
+Matrix Matrix::normalization01() const {
+  Matrix result{this->rows, this->cols};
+  for (int i = 0; i < (this->rows * this->cols); i++) {
+    result.data[i] = this->data[i] / 255.0f;
+  }
+  return result;
+}
