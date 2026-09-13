@@ -12,7 +12,11 @@ from PIL import Image, ImageDraw
 ROOT = Path(__file__).resolve().parent.parent
 
 LIB_PATH = ROOT / "build" / "librecognizer.so"
+
+# linear model
 # MODEL_PATH = [ROOT / "models" / "linear" / "modelv01.bin"]
+
+# mlp model
 MODEL_PATH=[ROOT / "models" / "mlp" / "l1v02.bin",ROOT / "models" / "mlp" / "l2v02.bin"]
 
 # ============================================================
@@ -50,10 +54,6 @@ encoded_paths=[str(path).encode() for path in MODEL_PATH]
 PathArray=ctypes.c_char_p*len(encoded_paths)
 path_array=PathArray(*encoded_paths)
 handle=lib.recognizer_create(path_array,len(MODEL_PATH))
-
-# handle = lib.recognizer_create(
-#     str(MODEL_PATH).encode()
-# )
 
 
 # ============================================================
