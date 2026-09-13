@@ -1,9 +1,15 @@
 #include "recognizer_api.h"
 #include "matrix.hpp"
 #include "recognizer.hpp"
+#include <string>
+#include <vector>
 
-void *recognizer_create(const char *modelPath) {
-  Recognizer *model = new Recognizer(modelPath);
+void *recognizer_create(const char *modelPath[], int num) {
+  std::vector<std::string> modelpaths;
+  for (int i = 0; i < num; i++) {
+    modelpaths.push_back(modelPath[i]);
+  }
+  Recognizer *model = new Recognizer(modelpaths); // 要长期保留一直到结束，要new
   return model;
 }
 

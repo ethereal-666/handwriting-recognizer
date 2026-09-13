@@ -11,7 +11,7 @@ typedef struct {
   float confidence;
 } PredictionResult;
 
-void *recognizer_create(const char *modelPath);
+void *recognizer_create(const char *modelPath[], int num);
 
 PredictionResult recognizer_predict(void *handle, const float *input, int size);
 

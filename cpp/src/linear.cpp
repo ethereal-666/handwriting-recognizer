@@ -56,7 +56,7 @@ void linear::save(const std::string &path) const {
   std::string magic{"2006"};
   file.write(magic.data(), magic.size());
   // 写入version
-  int version{1};
+  int version{this->version};
   file.write(reinterpret_cast<const char *>(&version), sizeof(version));
   // 写入inputsize、outputsize
   int tmp{this->inputSize};
@@ -98,6 +98,7 @@ void linear::load(const std::string &path) {
   // 读取version
   int version{};
   file.read(reinterpret_cast<char *>(&version), sizeof(version));
+  this->version = version;
   // 读取inputsize、outputsize
   int tmp{this->inputSize};
   file.read(reinterpret_cast<char *>(&tmp), sizeof(tmp));
@@ -124,4 +125,8 @@ void linear::load(const std::string &path) {
   }
 
   file.close();
+}
+
+void linear::setVersion(int version) {
+  this->version = version;
 }

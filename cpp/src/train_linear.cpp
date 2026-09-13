@@ -32,14 +32,6 @@ int main() {
     z = softmax.forward(z);
     loss = entropy.forward(z, label);
 
-    float tmp = z.getVal(0, 0);
-    int index{0};
-    for (int i = 1; i < 10; i++) {
-      if (z.getVal(i, 0) >= tmp) {
-        tmp = z.getVal(i, 0);
-        index = i;
-      }
-    }
     sum_loss += loss;
     if ((num + 1) % 1000 == 0) {
       std::cout << num - 999 << "~" << num << ":" << std::endl;
@@ -88,7 +80,8 @@ int main() {
   std::cout << "正确率：" << std::fixed << std::setprecision(4)
             << (float)correct / 10000.0f << std::endl;
 
-  model.save("models/modelv01.bin");
+  model.setVersion(1);
+  model.save("models/linear/modelv01.bin");
 
   return 0;
 }

@@ -3,6 +3,7 @@
 #include <string>
 class linear {
 private:
+  int version;      // 模型版本
   int inputSize;    // 输入规模
   int outputSize;   // 输出规模
   Matrix W;         // 权重矩阵
@@ -12,6 +13,7 @@ private:
   Matrix db;        // 用于更新参数b
 
 public:
+  void setVersion(int version);             // 设置版本
   linear(int inputSize, int outputSize);    // 构造函数
   Matrix forward(const Matrix &input);      // 前向计算
   Matrix backward(const Matrix &dz);        // 算dW、db、dx,只返回dx用于其他层

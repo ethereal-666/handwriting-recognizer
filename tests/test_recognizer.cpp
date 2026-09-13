@@ -4,9 +4,20 @@
 
 #include <iomanip>
 #include <iostream>
+#include <string>
+#include <vector>
 
 int main() {
-  Recognizer recognizer{"models/modelv01.bin"};
+  std::vector<std::string> paths;
+
+  // linear模型测试
+  // paths.push_back("models/linear/modelv01.bin");
+
+  // mlp模型测试
+  paths.push_back("models/mlp/l1v02.bin");
+  paths.push_back("models/mlp/l2v02.bin");
+
+  Recognizer recognizer{paths};
 
   MNISTLoader testData{"data/mnist/t10k-images-idx3-ubyte",
                        "data/mnist/t10k-labels-idx1-ubyte"};

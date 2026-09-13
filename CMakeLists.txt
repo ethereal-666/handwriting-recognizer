@@ -35,16 +35,16 @@ target_include_directories(test_linear PRIVATE
     cpp/include
 )
 
-add_executable(train
+add_executable(train_linear
     cpp/src/matrix.cpp
     cpp/src/mnist_loader.cpp
     cpp/src/linear.cpp
     cpp/src/softmax.cpp
     cpp/src/cross_entropy.cpp
-    cpp/src/train.cpp
+    cpp/src/train_linear.cpp
 )
 
-target_include_directories(train PRIVATE
+target_include_directories(train_linear PRIVATE
     cpp/include
 )
 
@@ -86,6 +86,7 @@ add_executable(test_recognizer
     cpp/src/linear.cpp
     cpp/src/softmax.cpp
     cpp/src/recognizer.cpp
+    cpp/src/relu.cpp
     tests/test_recognizer.cpp
 )
 
@@ -99,8 +100,44 @@ add_library(recognizer SHARED
     cpp/src/softmax.cpp
     cpp/src/recognizer.cpp
     cpp/src/recognizer_api.cpp
+    cpp/src/relu.cpp
 )
 
 target_include_directories(recognizer PRIVATE
     cpp/include
+)
+
+add_executable(train_mlp
+    cpp/src/matrix.cpp
+    cpp/src/mnist_loader.cpp
+    cpp/src/linear.cpp
+    cpp/src/softmax.cpp
+    cpp/src/cross_entropy.cpp
+    cpp/src/relu.cpp
+    cpp/src/train_mlp.cpp
+)
+
+target_include_directories(train_mlp PRIVATE
+    cpp/include
+)
+
+add_executable(
+    lr_search_mlp
+
+    tests/lr_search_mlp.cpp
+
+    cpp/src/matrix.cpp
+    cpp/src/mnist_loader.cpp
+    cpp/src/linear.cpp
+    cpp/src/relu.cpp
+    cpp/src/softmax.cpp
+    cpp/src/cross_entropy.cpp
+)
+
+target_include_directories(lr_search_mlp PRIVATE
+    cpp/include
+)
+
+target_link_libraries(lr_search_mlp PRIVATE
+    Threads::Threads
 )
